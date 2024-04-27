@@ -1,13 +1,23 @@
 package akautomation;
 
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class baseTest {
-	public static void main(String[] args) throws InterruptedException {
+	
+	ChromeDriver driver;
+	
+	@BeforeTest
+	public void Setup() {
 		
 		//All supported Browser Drivers
 		
@@ -25,12 +35,17 @@ public class baseTest {
 		//Setting up ChromeDriver
 		WebDriverManager.chromedriver().setup();
 		//Creating object with driver name
-        ChromeDriver driver= new ChromeDriver();
+        driver= new ChromeDriver();
         //maximizing the browse window
 		driver.manage().window().maximize();
 		//clearing the Cache
 		driver.manage().deleteAllCookies();
 		//visiting my Portfolio
+		
+	}
+	
+	@Test
+	public void actualTest() throws InterruptedException {
 		driver.get("https://rcsmetx.wixsite.com/arsalanportfolio");
 		//wait for 3 seconds
 		Thread.sleep(3000);
@@ -84,7 +99,6 @@ public class baseTest {
 		driver.findElement(By.id("submit")).click();
 		//verifying that no error message is coming and user is successfully logged in
 		driver.findElement(By.xpath("//*[text() = 'Logged In Successfully']")).isDisplayed();
-		
 		ActualTitle = driver.getTitle();
 		Assert.assertNotEquals(ExpectedTitle, ActualTitle);
 		
@@ -94,8 +108,13 @@ public class baseTest {
 		ActualTitle = driver.getTitle();
 		Assert.assertEquals(ExpectedTitle, ActualTitle);
 		Thread.sleep(5000);
+	}
+	
+	@AfterTest
+	public void endTest() {
 		//quit browser
 	 	driver.quit();
+	}
 				
 }
-}
+
