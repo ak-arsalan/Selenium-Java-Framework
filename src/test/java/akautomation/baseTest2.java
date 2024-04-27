@@ -10,27 +10,26 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class baseTest2 {
 	
-ChromeDriver driver1;
+ChromeDriver driver;
 	
 	@BeforeTest
-	public void Setup1() {
+	public void Setup() {
 		
 		//Setting up ChromeDriver
 		WebDriverManager.chromedriver().setup();
 		//Creating object with driver name
-        driver1= new ChromeDriver();
+        driver= new ChromeDriver();
         //maximizing the browse window
-		driver1.manage().window().maximize();
+		driver.manage().window().maximize();
 		//clearing the Cache
-		driver1.manage().deleteAllCookies();
-		//visiting my Portfolio
+		driver.manage().deleteAllCookies();
 		
 	}
 	
 	@Test
 	public void actualTest1() throws InterruptedException {
 		//Visit my portfolio
-		driver1.get("https://rcsmetx.wixsite.com/arsalanportfolio");
+		driver.get("https://rcsmetx.wixsite.com/arsalanportfolio");
 		//wait for 3 seconds
 		Thread.sleep(3000);
 	}
@@ -38,7 +37,7 @@ ChromeDriver driver1;
 	@AfterTest
 	public void endTest1() {
 		//quit browser
-	 	driver1.quit();
+	 	driver.quit();
 	}
 				
 }

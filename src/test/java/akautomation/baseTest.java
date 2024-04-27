@@ -39,7 +39,6 @@ public class baseTest {
 		driver.manage().window().maximize();
 		//clearing the Cache
 		driver.manage().deleteAllCookies();
-		//visiting my Portfolio
 		
 	}
 	
