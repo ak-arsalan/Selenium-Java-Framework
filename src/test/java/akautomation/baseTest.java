@@ -52,6 +52,47 @@ public class baseTest {
 		String ExpectedTitle = "Test Login | Practice Test Automation";
 		//comparing actual vs expected title
 		Assert.assertEquals(ExpectedTitle, ActualTitle);
+		
+		//usecase 1: submit the form without filling any field
+		driver.findElement(By.id("submit")).click();
+		//verifying that error message is coming 
+		driver.findElement(By.xpath("//*[text()='Your username is invalid!']")).isDisplayed();
+		
+		//Refresh Page
+		driver.navigate().refresh();
+		//usecase 2: Invalid username, valid password
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).sendKeys("Password123");
+		driver.findElement(By.id("submit")).click();
+		//verifying that error message is coming 
+		driver.findElement(By.xpath("//*[text()='Your username is invalid!']")).isDisplayed();
+		
+		//Refresh Page
+		driver.navigate().refresh();
+		//usecase 3: Valid username, invalid password
+		driver.findElement(By.id("username")).sendKeys("student");
+		driver.findElement(By.id("password")).sendKeys("Password123454");
+		driver.findElement(By.id("submit")).click();
+		//verifying that error message is coming 
+		driver.findElement(By.xpath("(//*[text() = 'Your password is invalid!'])[1]")).isDisplayed();
+		
+		//Refresh Page
+		driver.navigate().refresh();
+		//usecase 4: Valid username, valid password
+		driver.findElement(By.id("username")).sendKeys("student");
+		driver.findElement(By.id("password")).sendKeys("Password123");
+		driver.findElement(By.id("submit")).click();
+		//verifying that no error message is coming and user is successfully logged in
+		driver.findElement(By.xpath("//*[text() = 'Logged In Successfully']")).isDisplayed();
+		
+		ActualTitle = driver.getTitle();
+		Assert.assertNotEquals(ExpectedTitle, ActualTitle);
+		
+		//logout 
+		driver.findElement(By.xpath("//a[text() = 'Log out']")).click();
+		//verification
+		ActualTitle = driver.getTitle();
+		Assert.assertEquals(ExpectedTitle, ActualTitle);
 		Thread.sleep(5000);
 		//quit browser
 	 	driver.quit();
