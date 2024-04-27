@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
@@ -46,6 +45,7 @@ public class baseTest {
 	
 	@Test
 	public void actualTest() throws InterruptedException {
+		//Visit my portfolio
 		driver.get("https://rcsmetx.wixsite.com/arsalanportfolio");
 		//wait for 3 seconds
 		Thread.sleep(3000);

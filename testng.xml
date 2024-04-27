@@ -1,0 +1,12 @@
+<suite parallel="classes" name="Suite">
+  <test name="Test1">
+    <classes>
+      <class name="akautomation.baseTest"/>
+    </classes>
+  </test> <!-- Test -->
+  <test name="Test2">
+    <classes>
+      <class name="akautomation.baseTest2"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
